@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+const pollController = require("./pollController");
 
 const app = express();
 app.set("view engine", "ejs"); //setting view engine in backend server..
@@ -18,12 +19,12 @@ app.use(express.json());
 app.get("/", async (req, res) => {
   res.render("home");
 });
-app.get("/create", async (req, res) => {
-  res.render("form");
-});
-app.post("/", async (req, res) => {
-  res.render("home");
-});
+app.get("/create", pollController.createPollGetController);
+app.post("/create", pollController.createPollPostController);
+// app.get("/create", async (req, res) => {
+//   res.render("form");
+// });
+
 // connecting to database
 mongoose
   .connect("mongodb://localhost:27017/rakib-db", { useNewUrlParser: true })

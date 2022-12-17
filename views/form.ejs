@@ -40,7 +40,7 @@
                 <div class="form-group mb-2">
                   <input
                     type="text"
-                    name="option1"
+                    name="option"
                     class="form-control"
                     placeholder="Option 1"
                   />
@@ -48,7 +48,7 @@
                 <div class="form-group mb-2">
                   <input
                     type="text"
-                    name="option1"
+                    name="option"
                     class="form-control"
                     placeholder="Option 2"
                   />
@@ -57,13 +57,36 @@
               <button id="add-option" class="btn btn-secondary btn-sm my-3">
                 Add New Option
               </button>
-              <br>
+              <br />
               <input type="submit" class="btn btn-primary" value="Create" />
             </form>
           </div>
         </div>
       </div>
     </div>
-    <script></script>
+    <script>
+      let options = document.getElementById("options");
+      let addOption = document.getElementById("add-option");
+
+      let currentOptionNumber = 3;
+      addOption.addEventListener("click", (e) => {
+        e.preventDefault();
+        console.log("click")
+        let option = createNewOption();
+        options.appendChild(option);
+      });
+      const createNewOption = () => {
+        let div = document.createElement("div");
+        // div.className("from-group");
+        div.classList = "from-group mb-2";
+        let input = document.createElement("input");
+        input.type = "text";
+        input.className = "form-control";
+        input.name = "option"
+        input.placeholder = "option " + currentOptionNumber++;
+        div.appendChild(input);
+        return div;
+      };
+    </script>
   </body>
 </html>
