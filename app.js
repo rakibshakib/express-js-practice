@@ -4,9 +4,9 @@ const mongoose = require("mongoose");
 
 const app = express();
 app.set("view engine", "ejs"); //setting view engine in backend server..
-// app.set("views", "template") - if custom template need 
+// app.set("views", "template") - if custom template need
 
-// avoid error 
+// avoid error
 mongoose.set("strictQuery", true);
 
 // middle ware
@@ -16,11 +16,17 @@ app.use(express.json());
 
 // route
 app.get("/", async (req, res) => {
-  res.render("home")
+  res.render("home");
+});
+app.get("/create", async (req, res) => {
+  res.render("form");
+});
+app.post("/", async (req, res) => {
+  res.render("home");
 });
 // connecting to database
 mongoose
-  .connect("mongodb://localhost:27017/rakib", { useNewUrlParser: true })
+  .connect("mongodb://localhost:27017/rakib-db", { useNewUrlParser: true })
   .then(() => {
     // console.log("database connecting");
     app.listen(8080, () => {
