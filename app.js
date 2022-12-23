@@ -21,6 +21,9 @@ app.get("/", async (req, res) => {
 });
 app.get("/create", pollController.createPollGetController);
 app.post("/create", pollController.createPollPostController);
+app.get("/polls/:id", pollController.getPollsViewControlller);
+app.post("/polls/:id", pollController.postPollsViewControlller);
+app.get("/polls", pollController.getAllPolls);
 // app.get("/create", async (req, res) => {
 //   res.render("form");
 // });
